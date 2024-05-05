@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.class01.posts.repository.PostRepository">
+
+    <select id="findById" resultType="com.example.class01.posts.domain.dto.PostResponseDto">
+        select id, IFNULL(title, '') as title, IFNULL(contents, '') as contents, IFNULL(author, '') as author, modifiedDate
+        from posts
+        where id = #{id}
+    </select>
+
+    <select id="findAll" resultType="com.example.class01.posts.domain.dto.PostResponseDto">
+        select id, IFNULL(title, '') as title, IFNULL(contents, '') as contents, IFNULL(author, '') as author, modifiedDate
+        from posts
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        insert into posts values (#{id}, #{title}, #{contents}, #{author}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+    </insert>
+
+    <update id="update">
+        update posts
+        set title = #{dto.title},
+            contents = #{dto.contents},
+            modifiedDate = CURRENT_TIMESTAMP
+        where id = #{id}
+    </update>
+
+    <delete id = "delete">
+        delete
+        from posts
+        where id = #{id}
+    </delete>
+
+</mapper>
