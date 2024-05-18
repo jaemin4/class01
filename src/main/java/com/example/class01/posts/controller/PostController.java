@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
     private final PostService postService;
 
+
+
     @GetMapping("/posts/{id}")
     public PostResponseDto findById(@PathVariable Long id){
         return postService.findById(id);
@@ -33,4 +35,6 @@ public class PostController {
     public void delete(@PathVariable Long id){
         postService.delete(id);
     }
+
+
 }

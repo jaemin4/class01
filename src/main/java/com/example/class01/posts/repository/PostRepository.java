@@ -20,4 +20,8 @@ public interface PostRepository {
     void delete(Long id);
 
     List<PostResponseDto> findAll();
+
+    List<PostResponseDto> findPostByPageNumber( @Param("pageSize") int pageSize, @Param("offset") long offset);
+
+    int countPost();
 }
