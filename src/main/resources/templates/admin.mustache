@@ -1,0 +1,19 @@
+{{>layout/header}}
+
+<h1>어드민 페이지</h1>
+
+<div class="list-group">
+	{{#isAdmin}}
+		<a href="/admin/manage/customer" class="list-group-item list-group-item-action">회원 관리</a>
+	{{/isAdmin}}
+	<div class="accordion" id="accordionPanelsStayOpenExample">
+		<div class="accordion-item">
+			<h2 class="accordion-header" id="panelsStayOpen-headingOne">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-controls="panelsStayOpen-collapseOne">
+					로그 관리
+				</button>
+			</h2>
+		</div>
+	</div>
+</div>
+{{>layout/footer}}

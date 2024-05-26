@@ -2,9 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.class01.users.repository.UserRepository">
-
     <select id="findByUsername" resultType="com.example.class01.users.domain.vo.Users">
-        select *
+        select id,
+               username,
+               email,
+               picture,
+               password,
+               role
         from users
         where username = #{username}
     </select>
@@ -13,5 +17,21 @@
         insert into users (id, username, email, picture, role, password, createdDate)
         values (#{id}, #{username}, #{email}, #{picture}, 'USER', #{password}, CURRENT_TIMESTAMP)
     </insert>
+    <update id="updateAuth" parameterType="com.example.class01.users.domain.dto.UserUpdateRequestDto">
+        update users
+        set role = #{role}
+        where id = #{id};
+    </update>
 
+    <select id="findUserForAuthManage" resultType="com.example.class01.users.domain.dto.UserAuthManageResponseDto">
+        select
+            id, username, email, role
+        from users
+    </select>
+    <select id="findById" resultType="com.example.class01.users.domain.dto.UserAuthManageResponseDto">
+        select
+            id, username, email, role
+        from users
+        where id = #{id}
+    </select>
 </mapper>

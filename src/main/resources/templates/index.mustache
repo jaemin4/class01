@@ -1,48 +1,23 @@
 {{>layout/header}}
-<h1>게시판 서비스</h1>
-<div class="col-md-12">
-    <div class="row">
-        <div class="col-md-6">
-            <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
-        </div>
-    </div>
-</div>
-<br>
-<table class="table table-horizontal table-bordered">
-    <thead class="thead-strong">
-        <tr>
-            <th>게시글 번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>최종 수정일</th>
-        </tr>
-    </thead>
-    <tbody id="tbody">
-        {{#posts}}
-        <tr>
-            <td>{{id}}</td>
-            <td><a href="/posts/update/{{id}}"></a>{{title}}</td>
-            <td>{{author}}</td>
-            <td>{{modifiedDate}}</td>
-        </tr>
-        {{/posts}}
-    </tbody>
-</table>
-<div class="pagination justify-content-center">
-    {{#hasPrev}}
-        <a href="?page={{prev}}" role="button" class="btn btn-lg bi bi-caret-left-square-fill">prev
-    {{/hasPrev}}
-    {{^hasPrev}}
-        <a href="?page={{prev}}" role="button" class="btn btn-lg bi bi-caret-left-square-fill disabled">prev
-    {{/hasPrev}}
-    {{#totalPageCount}}
-        <a href="?page={{.}}" role="button" class="btn btn-lg bi bi-caret-left-square-fill"> {{.}}
-    {{/totalPageCount}}
-    {{#hasNext}}
-        <a href="?page={{next}}" role="button" class="btn btn-lg bi bi-caret-left-square-fill">next
-    {{/hasNext}}
-    {{^hasNext}}
-        <a href="?page={{next}}" role="button" class="btn btn-lg bi bi-caret-left-square-fill disabled">next
-    {{/hasNext}}
-</div>
+	<h1>숨고 웹 서비스</h1>
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-md-6">
+				<a href="/posts" class="btn btn-success active" role="button">게시판 가기</a>
+			</div>
+			<div class="col-md-6">
+				{{#username}}
+					<a href="/logout" class="btn btn-danger active" role="button">로그아웃</a>
+					Logged in as: <span>{{username}}</span>
+					{{#canGoAdmin}}
+						<a href="/admin" class="btn btn-success active" role="button">어드민 페이지</a>
+					{{/canGoAdmin}}
+				{{/username}}
+				{{^username}}
+					<a href="/loginForm" class="btn btn-success active" role="button">로그인</a>
+					<a href="/joinForm" class="btn btn-primary btn-lg btn-block active" role="button">회원가입</a>
+				{{/username}}
+			</div>
+		</div>
+	</div>
 {{>layout/footer}}
